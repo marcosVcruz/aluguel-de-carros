@@ -3,7 +3,8 @@ package app;
 import model.entities.CarRental;
 import model.entities.Vehicle;
 import model.services.BrazilTaxService;
-import model.services.RentalServices;
+import model.services.RentalService;
+
 
 import java.text.ParseException;
 import java.time.LocalDateTime;
@@ -18,7 +19,8 @@ public class Program {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern ("dd/MM/yyyy HH:mm");
+        DateTimeFormatter fmt =  DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
 
         System.out.println("Enter rental data");
         System.out.print("Car model: ");
@@ -35,7 +37,7 @@ public class Program {
         System.out.print("Enter price per day: ");
         double pricePerDay = sc.nextDouble();
 
-        RentalServices rentalService = new RentalServices(pricePerHour, pricePerDay,new BrazilTaxService());
+        RentalService rentalService = new RentalService(pricePerDay, pricePerHour, new BrazilTaxService());
 
         rentalService.processInvoice(cr);
 
